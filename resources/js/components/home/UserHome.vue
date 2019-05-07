@@ -30,7 +30,8 @@
             logout() {
                 var app = this;
                 var token = localStorage.removeItem('token');
-                app.$router.push({ name: 'login' });
+                app.$router.push({ name: 'login' }); 
+                // removes the users session token and pushes them back into the login vue using the router
             }
         }
     }

@@ -2437,7 +2437,7 @@ __webpack_require__.r(__webpack_exports__);
       var token = localStorage.removeItem('token');
       app.$router.push({
         name: 'login'
-      });
+      }); // removes the users session token and pushes them back into the login vue using the router
     }
   }
 });
@@ -2627,7 +2627,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     var app = this;
@@ -2638,7 +2637,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     }).then(function (resp) {
       console.log(resp.data);
-      app.student = resp.data;
+      app.students = resp.data;
     })["catch"](function (resp) {
       console.log(resp);
       alert('Could not load students');
@@ -39275,14 +39274,8 @@ var render = function() {
                     }
                   },
                   [_vm._v("Edit")]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "td",
-              [
+                ),
+                _vm._v(" "),
                 _c(
                   "router-link",
                   {
@@ -53968,14 +53961,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************************!*\
   !*** ./resources/js/components/students/StudentsIndex.vue ***!
   \************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _StudentsIndex_vue_vue_type_template_id_60b11764___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./StudentsIndex.vue?vue&type=template&id=60b11764& */ "./resources/js/components/students/StudentsIndex.vue?vue&type=template&id=60b11764&");
 /* harmony import */ var _StudentsIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./StudentsIndex.vue?vue&type=script&lang=js& */ "./resources/js/components/students/StudentsIndex.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _StudentsIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _StudentsIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -54005,7 +53999,7 @@ component.options.__file = "resources/js/components/students/StudentsIndex.vue"
 /*!*************************************************************************************!*\
   !*** ./resources/js/components/students/StudentsIndex.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54120,8 +54114,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\jjgor\Desktop\college waf\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\jjgor\Desktop\college waf\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\n00152319\Desktop\college-waf-ca3\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\n00152319\Desktop\college-waf-ca3\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
