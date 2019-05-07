@@ -1,6 +1,6 @@
 <template>
     <div class="card card-default">
-        <div class="card-header">Edit enrolment</div>
+        <div class="card-header">Create enrolment</div>
         <div class="card-body">
             <form v-on:submit="saveForm()">
                 <div class="form-row">

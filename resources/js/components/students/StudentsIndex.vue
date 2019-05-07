@@ -20,7 +20,7 @@
                     <td>{{student.phone}}</td>
                     <td> 
                         <router-link :to="{ name: 'students.edit', params: { id: student.id } }" class="btn  btn-warning">Edit</router-link>
-                        <router-link :to="{ name: 'students.delete', params: { id: student.id } }" class="btn  btn-danger">Delete</router-link>
+                        <button v-on:click="deleteStudent(student.id)" class="btn btn-danger">Delete</button>
                     </td>
                 </tr>
             </tbody>
@@ -48,6 +48,20 @@
         data() {
             return {
                 students: []
+            }
+        },
+        methods: {
+            deleteStudent(id) {
+                axios.delete('/api/students/' + this.id, {
+                    headers: { Authorization: "Bearer" + app.token }
+                })
+                .then(function (resp) {
+                    app.$router.push({path: 'students'});
+                })
+                .catch(function (resp) {
+                    console.log(resp);
+                    alert('Could not delete student');
+                });
             }
         }
     }

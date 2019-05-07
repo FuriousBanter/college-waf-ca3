@@ -4,8 +4,6 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use Validator;
-use App\Doctor;
-use App\Patient;
 use App\Enrolment;
 use App\Http\Controllers\Controller;
 

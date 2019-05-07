@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use Validator;
 use App\Student;
+use App\Enrolment;
 use App\Http\Controllers\Controller;
 
 class StudentController extends Controller
@@ -61,7 +62,7 @@ class StudentController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        $student = Student::find($id);
+        $student = Student::findOrFail($id);
         $student->name = $request->input('name');
         $student->address = $request->input('address');
         $student->phone = $request->input('phone');

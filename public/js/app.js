@@ -2495,42 +2495,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      enrolment: {},
-      errors: {},
-      students: [],
-      courses: []
+      students: {
+        name: '',
+        address: '',
+        email: '',
+        phone: ''
+      },
+      errors: {}
     };
   },
   mounted: function mounted() {
     var app = this;
     var id = app.$route.params.id;
     var token = localStorage.getItem('token');
-    axios.get('/api/enrolments/' + id, {
-      headers: {
-        Authorization: "Bearer " + token
-      }
-    }).then(function (resp) {
-      console.log(resp.data);
-      app.enrolment = resp.data;
-    })["catch"](function (resp) {
-      console.log(resp);
-      alert('Could not load enrolment');
-    });
-    axios.get('/api/courses', {
-      headers: {
-        Authorization: "Bearer " + token
-      }
-    }).then(function (resp) {
-      console.log(resp.data);
-      app.courses = resp.data;
-    })["catch"](function (resp) {
-      console.log(resp);
-      alert('Could not load courses');
-    });
-    axios.get('/api/students', {
+    axios.get('/api/students/' + id, {
       headers: {
         Authorization: "Bearer " + token
       }
@@ -2539,7 +2526,7 @@ __webpack_require__.r(__webpack_exports__);
       app.students = resp.data;
     })["catch"](function (resp) {
       console.log(resp);
-      alert('Could not load students');
+      alert('Could not load student');
     });
   },
   methods: {
@@ -2548,7 +2535,7 @@ __webpack_require__.r(__webpack_exports__);
       var app = this;
       var token = localStorage.getItem('token');
       var id = app.$route.params.id;
-      var newStudent = app.student; //json string
+      var newStudent = app.students; //json string
 
       axios.put('/api/students/' + id, newStudent, {
         headers: {
@@ -2563,27 +2550,7 @@ __webpack_require__.r(__webpack_exports__);
         app.errors = resp.response.data;
       });
     }
-  } // methods: {
-  //     saveForm() {
-  //         event.preventDefault();
-  //         var app = this;
-  //         var token = localStorage.getItem('token');
-  //         var id = app.$route.params.id;
-  //         var newEnrolment = app.enrolment;
-  //         //json string
-  //         axios.put('/api/enrolments/' + id, newEnrolment, {
-  //         headers: { Authorization: "Bearer " + token }
-  //     })
-  //             .then(function (resp) {
-  //                 //go to router object and push path '/'
-  //                 app.$router.push({path: '/'});
-  //             })
-  //             .catch(function (resp) {
-  //                 app.errors = resp.response.data;
-  //             });
-  //     }
-  // }
-
+  }
 });
 
 /***/ }),
@@ -2647,6 +2614,22 @@ __webpack_require__.r(__webpack_exports__);
     return {
       students: []
     };
+  },
+  methods: {
+    deleteStudent: function deleteStudent(id) {
+      axios["delete"]('/api/students/' + this.id, {
+        headers: {
+          Authorization: "Bearer" + app.token
+        }
+      }).then(function (resp) {
+        app.$router.push({
+          path: 'students'
+        });
+      })["catch"](function (resp) {
+        console.log(resp);
+        alert('Could not delete student');
+      });
+    }
   }
 });
 
@@ -38186,7 +38169,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card card-default" }, [
-    _c("div", { staticClass: "card-header" }, [_vm._v("Edit enrolment")]),
+    _c("div", { staticClass: "card-header" }, [_vm._v("Create enrolment")]),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
       _c(
@@ -39057,7 +39040,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card card-default" }, [
-    _c("div", { staticClass: "card-header" }, [_vm._v("Edit enrolment")]),
+    _c("div", { staticClass: "card-header" }, [_vm._v("Edit Students")]),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
       _c(
@@ -39079,22 +39062,28 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.student.name,
-                    expression: "student.name"
+                    value: _vm.students.name,
+                    expression: "students.name"
                   }
                 ],
                 staticClass: "form-control",
                 attrs: { type: "text" },
-                domProps: { value: _vm.student.name },
+                domProps: { value: _vm.students.name },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.student, "name", $event.target.value)
+                    _vm.$set(_vm.students, "name", $event.target.value)
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _vm.errors.name
+                ? _c("p", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.name[0]))
+                  ])
+                : _vm._e()
             ])
           ]),
           _vm._v(" "),
@@ -39107,22 +39096,28 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.student.address,
-                    expression: "student.address"
+                    value: _vm.students.address,
+                    expression: "students.address"
                   }
                 ],
                 staticClass: "form-control",
                 attrs: { type: "text" },
-                domProps: { value: _vm.student.address },
+                domProps: { value: _vm.students.address },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.student, "address", $event.target.value)
+                    _vm.$set(_vm.students, "address", $event.target.value)
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _vm.errors.address
+                ? _c("p", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.address[0]))
+                  ])
+                : _vm._e()
             ])
           ]),
           _vm._v(" "),
@@ -39135,22 +39130,28 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.student.email,
-                    expression: "student.email"
+                    value: _vm.students.email,
+                    expression: "students.email"
                   }
                 ],
                 staticClass: "form-control",
                 attrs: { type: "email" },
-                domProps: { value: _vm.student.email },
+                domProps: { value: _vm.students.email },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.student, "email", $event.target.value)
+                    _vm.$set(_vm.students, "email", $event.target.value)
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _vm.errors.email
+                ? _c("p", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.email[0]))
+                  ])
+                : _vm._e()
             ])
           ]),
           _vm._v(" "),
@@ -39163,22 +39164,28 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.student.phone,
-                    expression: "student.phone"
+                    value: _vm.students.phone,
+                    expression: "students.phone"
                   }
                 ],
                 staticClass: "form-control",
                 attrs: { type: "text" },
-                domProps: { value: _vm.student.phone },
+                domProps: { value: _vm.students.phone },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.student, "phone", $event.target.value)
+                    _vm.$set(_vm.students, "phone", $event.target.value)
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _vm.errors.phone
+                ? _c("p", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.phone[0]))
+                  ])
+                : _vm._e()
             ])
           ]),
           _vm._v(" "),
@@ -39195,7 +39202,7 @@ var render = function() {
                   "router-link",
                   {
                     staticClass: "btn btn-secondary",
-                    attrs: { to: { name: "enrolments" } }
+                    attrs: { to: { name: "students" } }
                   },
                   [_vm._v("Go Back")]
                 )
@@ -39277,13 +39284,12 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c(
-                  "router-link",
+                  "button",
                   {
-                    staticClass: "btn  btn-danger",
-                    attrs: {
-                      to: {
-                        name: "students.delete",
-                        params: { id: student.id }
+                    staticClass: "btn btn-danger",
+                    on: {
+                      click: function($event) {
+                        _vm.deleteStudent(student.id)
                       }
                     }
                   },
@@ -53961,15 +53967,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************************!*\
   !*** ./resources/js/components/students/StudentsIndex.vue ***!
   \************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _StudentsIndex_vue_vue_type_template_id_60b11764___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./StudentsIndex.vue?vue&type=template&id=60b11764& */ "./resources/js/components/students/StudentsIndex.vue?vue&type=template&id=60b11764&");
 /* harmony import */ var _StudentsIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./StudentsIndex.vue?vue&type=script&lang=js& */ "./resources/js/components/students/StudentsIndex.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _StudentsIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _StudentsIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -53999,7 +54004,7 @@ component.options.__file = "resources/js/components/students/StudentsIndex.vue"
 /*!*************************************************************************************!*\
   !*** ./resources/js/components/students/StudentsIndex.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54114,8 +54119,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\n00152319\Desktop\college-waf-ca3\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\n00152319\Desktop\college-waf-ca3\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\jjgor\Desktop\college waf\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\jjgor\Desktop\college waf\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
