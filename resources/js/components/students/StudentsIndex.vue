@@ -1,5 +1,6 @@
 <template>
-    <div class="container mt-40">
+
+    <div class="container">
         <table class="table">
             <thead>
                 <tr>

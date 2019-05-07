@@ -2627,6 +2627,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     var app = this;
@@ -39230,7 +39231,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container mt-40" }, [
+  return _c("div", { staticClass: "container" }, [
     _c("table", { staticClass: "table" }, [
       _vm._m(0),
       _vm._v(" "),

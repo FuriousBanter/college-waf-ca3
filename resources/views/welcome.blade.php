@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<script src="http://localhost:8098"></script>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
